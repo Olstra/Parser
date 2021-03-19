@@ -1,0 +1,26 @@
+{
+  "name": "parser",
+  "version": "1.0.0",
+  "description": "Testing stuff for parser 2.0",
+  "main": "app.js",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "install": "^0.13.0",
+    "npm": "^7.6.3",
+    "pdf2json": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olstra/Parser.git"
+  },
+  "author": "olstra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Olstra/Parser/issues"
+  },
+  "homepage": "https://github.com/Olstra/Parser#readme"
+}
