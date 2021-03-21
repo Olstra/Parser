@@ -32,9 +32,12 @@ let patients = [];
                 const raw = pdfParser.getRawTextContent().replace(/\r\n/g, " ");
                 
                 // Return the parsed data
+                // TODO what about "endpattern"?
+                // TODO what about translations?
+                let temp = "TODO"
                 resolve({
-                    yearly_cancellation: "0",
-                    validity: "1362009600",
+                    yearly_cancellation: "TODO",
+                    validity: "Diese Offerte ist gültig bis|Offerte \/ Antrag ist g.ltig bis\s+(\d\d\.\d\d\.\d\d\d\d)",
                     contract_begin: /Allgemeine Vertragsangaben[a-zA-z\s]*\s*([\d]{2}\.[\d]{2}.[\d]{4})/.exec(raw)[1].trim(),
                     contract_termination: "1451520000",
                     maximum_insured_salary: {
@@ -75,6 +78,6 @@ let patients = [];
     patients[0]["contract_begin"] = new Date(patients[0]["contract_begin"].split('.').reverse().join('-')).getTime() / 1000;
     
     // Save the extracted information to a json file
-    fs.writeFileSync("offerteDaten.json", JSON.stringify(patients));
+    fs.writeFileSync("offerteDaten.json", JSON.stringify(patients, null, "/t"));
 
 })();
