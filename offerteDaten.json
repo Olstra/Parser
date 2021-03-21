@@ -1,9 +1,93 @@
 [
 	{
+		"yearly_cancellation": null,
+		"validity": null,
+		"contract_begin": null,
+		"contract_termination": 1584316800,
+		"maximum_insured_salary": {
+			"industrial_accident": {
+				"men": "TODO",
+				"women": "TODO"
+			},
+			"non_industrial_accident": {
+				"men": "TODO",
+				"women": "TODO"
+			}
+		},
+		"premium_rate": {
+			"industrial_accident": {
+				"overall": "TODO"
+			},
+			"non_industrial_accident": {
+				"overall": "TODO"
+			}
+		},
+		"yearly_premium": "TODO",
+		"premiums": {
+			"discount": "TODO"
+		}
+	},
+	{
 		"yearly_cancellation": 1588204800,
 		"validity": 1588204800,
 		"contract_begin": null,
 		"contract_termination": 1571961600,
+		"maximum_insured_salary": {
+			"industrial_accident": {
+				"men": "TODO",
+				"women": "TODO"
+			},
+			"non_industrial_accident": {
+				"men": "TODO",
+				"women": "TODO"
+			}
+		},
+		"premium_rate": {
+			"industrial_accident": {
+				"overall": "TODO"
+			},
+			"non_industrial_accident": {
+				"overall": "TODO"
+			}
+		},
+		"yearly_premium": "TODO",
+		"premiums": {
+			"discount": "TODO"
+		}
+	},
+	{
+		"yearly_cancellation": 1551312000,
+		"validity": 1551312000,
+		"contract_begin": null,
+		"contract_termination": 1546300800,
+		"maximum_insured_salary": {
+			"industrial_accident": {
+				"men": "TODO",
+				"women": "TODO"
+			},
+			"non_industrial_accident": {
+				"men": "TODO",
+				"women": "TODO"
+			}
+		},
+		"premium_rate": {
+			"industrial_accident": {
+				"overall": "TODO"
+			},
+			"non_industrial_accident": {
+				"overall": "TODO"
+			}
+		},
+		"yearly_premium": "TODO",
+		"premiums": {
+			"discount": "TODO"
+		}
+	},
+	{
+		"yearly_cancellation": 1543536000,
+		"validity": 1543536000,
+		"contract_begin": null,
+		"contract_termination": 1527811200,
 		"maximum_insured_salary": {
 			"industrial_accident": {
 				"men": "TODO",
