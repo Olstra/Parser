@@ -1,1 +1,30 @@
-[{"yearly_cancellation":"0","validity":"1362009600","contract_begin":1571961600,"contract_termination":"1451520000","maximum_insured_salary":{"industrial_accident":{"men":"2774000","women":"12234900"},"non_industrial_accident":{"men":"2758300","women":"12156300"}},"premium_rate":{"industrial_accident":{"overall":"3.32"},"non_industrial_accident":{"overall":"10.86"}},"yearly_premium":"211802","premiums":{"discount":"0"}}]
+[
+	{
+		"yearly_cancellation": 1588204800,
+		"validity": 1588204800,
+		"contract_begin": 1588204800,
+		"contract_termination": 1571961600,
+		"maximum_insured_salary": {
+			"industrial_accident": {
+				"men": "TODO",
+				"women": "TODO"
+			},
+			"non_industrial_accident": {
+				"men": "TODO",
+				"women": "TODO"
+			}
+		},
+		"premium_rate": {
+			"industrial_accident": {
+				"overall": "TODO"
+			},
+			"non_industrial_accident": {
+				"overall": "TODO"
+			}
+		},
+		"yearly_premium": "TODO",
+		"premiums": {
+			"discount": "TODO"
+		}
+	}
+]

@@ -2,3 +2,11 @@
 
 # Parser
 Prototyp für Parser 2.0 ...
+#
+Was muss der Parser können?
+- Debugger soll PDF->Text zeile für zeile durchgehen
+#
+TODOs
+- check for null values if regex expr. was not matched
+- regex if then else (?(A)B|C)???
+- 

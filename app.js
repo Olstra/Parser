@@ -9,6 +9,22 @@ const files = fs.readdirSync("pdf");
 // All of the parse patients
 let patients = [];
 
+function toUnixTimestamp(text){
+    let newText = new Date( text.split('.').reverse().join('-') ).getTime() / 1000;
+    return newText;
+}
+
+function parseDate(regexExpr, text){
+
+    let result = null; // if not found value will be null
+
+    if(regexExpr.exec(text)[1] != null){
+        result = toUnixTimestamp( regexExpr.exec(text)[1].trim() );
+    }
+
+    return result;
+}
+
 // Make a IIFE so we can run asynchronous code
 (async () => {
 
@@ -34,38 +50,36 @@ let patients = [];
                 // Return the parsed data
                 // TODO what about "endpattern"?
                 // TODO what about translations?
-                let temp = "TODO"
+                // TODO make function to tranform date->Unix timestamp
                 resolve({
-                    yearly_cancellation: "TODO",
-                    validity: "Diese Offerte ist gültig bis|Offerte \/ Antrag ist g.ltig bis\s+(\d\d\.\d\d\.\d\d\d\d)",
-                    contract_begin: /Allgemeine Vertragsangaben[a-zA-z\s]*\s*([\d]{2}\.[\d]{2}.[\d]{4})/.exec(raw)[1].trim(),
-                    contract_termination: "1451520000",
+                    yearly_cancellation: parseDate(/Diese Offerte ist gültig bis|Offerte \/ Antrag ist g.ltig bis\s+(\d\d.\d\d.\d\d\d\d)/, raw),
+                    validity: parseDate(/Diese Offerte ist gültig bis|Offerte \/ Antrag ist g.ltig bis\s+(\d\d.\d\d.\d\d\d\d)/, raw),
+                    contract_begin: parseDate(/Diese Offerte ist gültig bis|Offerte \/ Antrag ist g.ltig bis\s+(\d\d.\d\d.\d\d\d\d)/, raw),
+                    contract_termination: parseDate(/Allgemeine Vertragsangaben[a-zA-z\s]*\s*([\d]{2}\.[\d]{2}.[\d]{4})/, raw),
                     maximum_insured_salary: {
                         industrial_accident: {
-                            men: "2774000",
-                            women: "12234900"
+                            men: "TODO",
+                            women: "TODO"
                         },
                         non_industrial_accident: {
-                            men: "2758300",
-                            women: "12156300"
+                            men: "TODO",
+                            women: "TODO"
                         }
                     },
                     premium_rate: {
                         industrial_accident: {
-                            "overall": "3.32"
+                            "overall": "TODO"
                         },
                         non_industrial_accident: {
-                            overall: "10.86"
+                            overall: "TODO"
                         }
                     },
-                    yearly_premium: "211802",
+                    yearly_premium: "TODO",
                     premiums: {
-                        discount: "0"
+                        discount: "TODO"
                     }
                 });
-
             });
-
         });
 
         // Add the patient to the patients array
@@ -73,11 +87,7 @@ let patients = [];
 
     }));
 
-    //console.log(patients[0]["contract_begin"]); // access var in array
-    //let temp = "25.10.2019".split('.').reverse().join('-'); // convert date format "dd.mm.yyyy -> yyyy-mm-dd"
-    patients[0]["contract_begin"] = new Date(patients[0]["contract_begin"].split('.').reverse().join('-')).getTime() / 1000;
-    
     // Save the extracted information to a json file
-    fs.writeFileSync("offerteDaten.json", JSON.stringify(patients, null, "/t"));
+    fs.writeFileSync("offerteDaten.json", JSON.stringify(patients, null, "\t"));
 
 })();
