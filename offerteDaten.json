@@ -2,7 +2,7 @@
 	{
 		"yearly_cancellation": 1588204800,
 		"validity": 1588204800,
-		"contract_begin": 1588204800,
+		"contract_begin": null,
 		"contract_termination": 1571961600,
 		"maximum_insured_salary": {
 			"industrial_accident": {

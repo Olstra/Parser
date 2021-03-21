@@ -3,11 +3,11 @@ const fs = require("fs");
 const PDFParser = require("pdf2json");
 const unixTimestamp = require("unix-timestamp");
 
-// Get all the filenames from the patients folder
+// Get all the filenames from the offers folder
 const files = fs.readdirSync("pdf");
 
-// All of the parse patients
-let patients = [];
+// All of the parsed offers
+let offers = [];
 
 function toUnixTimestamp(text){
     let newText = new Date( text.split('.').reverse().join('-') ).getTime() / 1000;
@@ -18,7 +18,8 @@ function parseDate(regexExpr, text){
 
     let result = null; // if not found value will be null
 
-    if(regexExpr.exec(text)[1] != null){
+    // check if expresion was found
+    if(regexExpr.exec(text) != null){
         result = toUnixTimestamp( regexExpr.exec(text)[1].trim() );
     }
 
@@ -28,8 +29,8 @@ function parseDate(regexExpr, text){
 // Make a IIFE so we can run asynchronous code
 (async () => {
 
-    // Await all of the patients to be passed
-    // For each file in the patients folder
+    // Await all of the offers to be passed
+    // For each file in the offers folder
     await Promise.all(files.map(async (file) => {
 
         // Set up the pdf parser
@@ -38,8 +39,8 @@ function parseDate(regexExpr, text){
         // Load the pdf document
         pdfParser.loadPDF(`pdf/${file}`);
 
-        // Parsed the patient
-        let patient = await new Promise(async (resolve, reject) => {
+        // Parsed the offer
+        let offer = await new Promise(async (resolve, reject) => {
 
             // On data ready
             pdfParser.on("pdfParser_dataReady", (pdfData) => {
@@ -50,11 +51,10 @@ function parseDate(regexExpr, text){
                 // Return the parsed data
                 // TODO what about "endpattern"?
                 // TODO what about translations?
-                // TODO make function to tranform date->Unix timestamp
                 resolve({
                     yearly_cancellation: parseDate(/Diese Offerte ist gültig bis|Offerte \/ Antrag ist g.ltig bis\s+(\d\d.\d\d.\d\d\d\d)/, raw),
                     validity: parseDate(/Diese Offerte ist gültig bis|Offerte \/ Antrag ist g.ltig bis\s+(\d\d.\d\d.\d\d\d\d)/, raw),
-                    contract_begin: parseDate(/Diese Offerte ist gültig bis|Offerte \/ Antrag ist g.ltig bis\s+(\d\d.\d\d.\d\d\d\d)/, raw),
+                    contract_begin: parseDate(/TEST-sollte null sein.../, raw),
                     contract_termination: parseDate(/Allgemeine Vertragsangaben[a-zA-z\s]*\s*([\d]{2}\.[\d]{2}.[\d]{4})/, raw),
                     maximum_insured_salary: {
                         industrial_accident: {
@@ -82,12 +82,12 @@ function parseDate(regexExpr, text){
             });
         });
 
-        // Add the patient to the patients array
-        patients.push(patient);
+        // Add the offer to the offers array
+        offers.push(offer);
 
     }));
 
     // Save the extracted information to a json file
-    fs.writeFileSync("offerteDaten.json", JSON.stringify(patients, null, "\t"));
+    fs.writeFileSync("offerteDaten.json", JSON.stringify(offers, null, "\t"));
 
 })();
